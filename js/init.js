@@ -7,9 +7,9 @@
 jQuery(document).ready(function(){
 
 	"use strict";
-	
+
 	// here all ready functions
-	
+
 	elisc_tm_modalbox();
 	elisc_tm_movingbox();
 	elisc_tm_page_transition();
@@ -28,14 +28,14 @@ jQuery(document).ready(function(){
 	elisc_tm_stickyy();
 	elisc_tm_down();
 	elisc_tm_location();
-	
+
 	jQuery(window).load('body', function(){
 		elisc_tm_my_load();
 	});
 	jQuery(window).on('resize', function(){
 		elisc_tm_menu_closer();
 	});
-	
+
 });
 
 // -----------------------------------------------------
@@ -48,7 +48,7 @@ jQuery(document).ready(function(){
 
 function elisc_tm_modalbox(){
 	"use strict";
-	
+
 	jQuery('.elisc_tm_all_wrap').prepend('<div class="elisc_tm_modalbox"><div class="box_inner"><div class="close"><a href="#"><i class="icon-cancel"></i></a></div><div class="description_wrap"></div></div></div>');
 }
 
@@ -79,7 +79,7 @@ function elisc_tm_movingbox(){
 		var xmove		= event.clientX+20;
 		movingbox.css({top:ymove+'px',left:xmove+'px'});
 	});
-	
+
 }
 
 // -----------------------------------------------------
@@ -87,16 +87,16 @@ function elisc_tm_movingbox(){
 // -----------------------------------------------------
 
 function elisc_tm_page_transition(){
-	
+
 	"use strict";
-	
+
 	var section 		= jQuery('.elisc_tm_section');
 	var allLi 			= jQuery('.transition_link li');
 	var button			= jQuery('.transition_link a');
 	var wrapper 		= jQuery('.elisc_tm_all_wrap');
 	var enter	 		= wrapper.data('enter');
 	var exit		 	= wrapper.data('exit');
-	
+
 	button.on('click',function(){
 		var element 	= jQuery(this);
 		var href		= element.attr('href');
@@ -128,9 +128,9 @@ function elisc_tm_page_transition(){
 // -----------------------------------------------------
 
 function elisc_tm_trigger_menu(){
-	
+
 	"use strict";
-	
+
 	var hamburger 		= jQuery('.elisc_tm_topbar .trigger .hamburger');
 	var mobileMenu		= jQuery('.elisc_tm_mobile_menu');
 	var mobileMenuList	= jQuery('.elisc_tm_mobile_menu .menu_list ul li a');
@@ -147,19 +147,19 @@ function elisc_tm_trigger_menu(){
 		}
 		return false;
 	});
-	
+
 	mobileMenuList.on('click',function(){
 		jQuery('.elisc_tm_topbar .trigger .hamburger').removeClass('is-active');
 		mobileMenu.removeClass('opened');
 		return false;
 	});
-	
+
 }
 
 function elisc_tm_menu_closer(){
-	
+
 	"use strict";
-	
+
 	var ww = jQuery(window).width();
 	if(ww >= 1040){
 		jQuery('.elisc_tm_mobile_menu').removeClass('opened');
@@ -172,13 +172,13 @@ function elisc_tm_menu_closer(){
 // -------------------------------------------------
 
 function elisc_tm_experience_popup(){
-	
+
 	"use strict";
-	
+
 	var modalBox		= jQuery('.elisc_tm_modalbox');
 	var button			= jQuery('.elisc_tm_experience .elisc_tm_full_link');
 	var closePopup		= modalBox.find('.close');
-	
+
 	button.on('click',function(){
 		var element = jQuery(this);
 		var parent	= element.closest('.elisc_tm_experience .list ul li');
@@ -206,13 +206,13 @@ function elisc_tm_experience_popup(){
 // -------------------------------------------------
 
 function elisc_tm_service_popup(){
-	
+
 	"use strict";
-	
+
 	var modalBox		= jQuery('.elisc_tm_modalbox');
 	var button			= jQuery('.elisc_tm_services .service_list .elisc_tm_full_link');
 	var closePopup		= modalBox.find('.close');
-	
+
 	button.on('click',function(){
 		var element = jQuery(this);
 		var parent	= element.closest('.elisc_tm_services .service_list ul li');
@@ -238,13 +238,13 @@ function elisc_tm_service_popup(){
 // -------------------------------------------------
 
 function elisc_tm_modalbox_news(){
-	
+
 	"use strict";
-	
+
 	var modalBox		= jQuery('.elisc_tm_modalbox');
 	var button			= jQuery('.elisc_tm_news .list .title a,.elisc_tm_news .elisc_tm_read_more a');
 	var closePopup		= modalBox.find('.close');
-	
+
 	button.on('click',function(){
 		var element 	= jQuery(this);
 		var parent 		= element.closest('li');
@@ -271,12 +271,12 @@ function elisc_tm_modalbox_news(){
 // -------------------------------------------------
 
 function elisc_tm_modalbox_portfolio(){
-	
+
 	"use strict";
-	
+
 	var modalBox	= jQuery('.elisc_tm_modalbox');
 	var button		= jQuery('.elisc_tm_portfolio .portfolio_popup');
-	
+
 	button.on('click',function(){
 		var element 	= jQuery(this);
 		var parent		= element.closest('li');
@@ -284,11 +284,11 @@ function elisc_tm_modalbox_portfolio(){
 		var details 	= parent.find('.hidden_content_portfolio').html();
 		var category 	= parent.find('.details .category').html();
 		var title	 	= parent.find('.details .title a').text();
-		
+
 		modalBox.addClass('opened');
 		modalBox.find('.description_wrap').html(details);
 		modalBox.find('.popup_details').prepend('<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
-		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><span class="category">'+category+'</span><h3 class="title">'+title+'</h3></div>');	
+		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><span class="category">'+category+'</span><h3 class="title">'+title+'</h3></div>');
 		elisc_tm_data_images();
 		return false;
 	});
@@ -299,12 +299,12 @@ function elisc_tm_modalbox_portfolio(){
 // -----------------------------------------------------
 
 function elisc_tm_preloader(){
-	
+
 	"use strict";
-	
+
 	var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
 	var preloader = $('#preloader');
-	
+
 	if (!isMobile) {
 		setTimeout(function() {
 			preloader.addClass('preloaded');
@@ -323,9 +323,9 @@ function elisc_tm_preloader(){
 // -----------------------------------------------------
 
 function elisc_tm_my_load(){
-	
+
 	"use strict";
-	
+
 	var speed	= 500;
 	setTimeout(function(){elisc_tm_preloader();},speed);
 }
@@ -336,9 +336,9 @@ function elisc_tm_my_load(){
 
 function elisc_tm_cursor(){
     "use strict";
-	
+
 	var myCursor	= jQuery('.mouse-cursor');
-	
+
 	if(myCursor.length){
 		if ($("body")) {
         const e = document.querySelector(".cursor-inner"),
@@ -361,11 +361,11 @@ function elisc_tm_cursor(){
 // -----------------------------------------------------
 
 function elisc_tm_imgtosvg(){
-	
+
 	"use strict";
-	
+
 	jQuery('img.svg').each(function(){
-		
+
 		var jQueryimg 		= jQuery(this);
 		var imgClass		= jQueryimg.attr('class');
 		var imgURL			= jQueryimg.attr('src');
@@ -395,7 +395,7 @@ function elisc_tm_imgtosvg(){
 // -----------------------------------------------------
 
 function elisc_tm_popup(){
-	
+
 	"use strict";
 
 	jQuery('.gallery_zoom').each(function() { // the containers for all your galleries
@@ -420,11 +420,11 @@ function elisc_tm_popup(){
 			fixedContentPos: true
 		});
 	});
-	
+
 	jQuery('.soundcloude_link').magnificPopup({
 	  type : 'image',
 	   gallery: {
-		   enabled: true, 
+		   enabled: true,
 	   },
 	});
 }
@@ -434,11 +434,11 @@ function elisc_tm_popup(){
 // -----------------------------------------------------
 
 function elisc_tm_data_images(){
-	
+
 	"use strict";
-	
+
 	var data			= jQuery('*[data-img-url]');
-	
+
 	data.each(function(){
 		var element			= jQuery(this);
 		var url				= element.data('img-url');
@@ -451,44 +451,44 @@ function elisc_tm_data_images(){
 // -----------------------------------------------------
 
 function elisc_tm_contact_form(){
-	
+
 	"use strict";
-	
+
 	jQuery(".contact_form #send_message").on('click', function(){
-		
+
 		var name 		= jQuery(".contact_form #name").val();
 		var email 		= jQuery(".contact_form #email").val();
 		var message 	= jQuery(".contact_form #message").val();
 		var subject 	= jQuery(".contact_form #subject").val();
 		var success     = jQuery(".contact_form .returnmessage").data('success');
-	
+
 		jQuery(".contact_form .returnmessage").empty(); //To empty previous error/success message.
-		//checking for blank fields	
+		//checking for blank fields
 		if(name===''||email===''||message===''){
-			
+
 			jQuery('div.empty_notice').slideDown(500).delay(2000).slideUp(500);
 		}
 		else{
 			// Returns successful data submission message when the entered information is stored in database.
 			jQuery.post("modal/contact.php",{ ajax_name: name, ajax_email: email, ajax_message:message, ajax_subject: subject}, function(data) {
-				
+
 				jQuery(".contact_form .returnmessage").append(data);//Append returned message to message paragraph
-				
-				
+
+
 				if(jQuery(".contact_form .returnmessage span.contact_error").length){
-					jQuery(".contact_form .returnmessage").slideDown(500).delay(2000).slideUp(500);		
+					jQuery(".contact_form .returnmessage").slideDown(500).delay(2000).slideUp(500);
 				}else{
 					jQuery(".contact_form .returnmessage").append("<span class='contact_success'>"+ success +"</span>");
 					jQuery(".contact_form .returnmessage").slideDown(500).delay(4000).slideUp(500);
 				}
-				
+
 				if(data===""){
 					jQuery("#contact_form")[0].reset();//To reset form fields on success
 				}
-				
+
 			});
 		}
-		return false; 
+		return false;
 	});
 }
 
@@ -499,7 +499,7 @@ function elisc_tm_contact_form(){
 function elisc_tm_owl_carousel(){
 
 	"use strict";
-	
+
 	var carousel			= jQuery('.elisc_tm_testimonials .owl-carousel');
 
 	carousel.owlCarousel({
@@ -514,7 +514,7 @@ function elisc_tm_owl_carousel(){
 		nav: false,
 		navSpeed: false
 	});
-	
+
 	var carousel2			= jQuery('.elisc_tm_partners .owl-carousel');
 
 	carousel2.owlCarousel({
@@ -538,24 +538,24 @@ function elisc_tm_owl_carousel(){
 		}
 	});
 	elisc_tm_imgtosvg();
-	
+
 	var carousel3			= jQuery('.elisc_tm_portfolio .owl-carousel');
-	
+
 	var rtlMode	= false;
 
 	if(jQuery('body').hasClass('rtl')){
 		rtlMode = 'true';
 	}
-	
+
 	carousel3.each(function(){
-		var element = jQuery(this);		
-		
+		var element = jQuery(this);
+
 		element.owlCarousel({
 			loop: false,
 			items: 3,
 			lazyLoad: false,
 			margin: 30,
-			autoplay: true,
+			autoplay: false,
 			autoplayTimeout: 7000,
 			rtl: rtlMode,
 			dots: true,
@@ -585,7 +585,7 @@ function elisc_tm_owl_carousel(){
 			element.trigger('prev.owl.carousel');
 			return false;
 		});
-		
+
 	});
 }
 
@@ -594,9 +594,9 @@ function elisc_tm_owl_carousel(){
 // -------------------------------------------------
 
 function elisc_tm_scrollable(){
-	
+
 	"use strict";
-	
+
 	var w				= jQuery(window).width();
 	var H				= jQuery(window).height();
 	var spacing			= 50;
@@ -607,12 +607,12 @@ function elisc_tm_scrollable(){
 	var scrollable		= jQuery('.elisc_tm_sidebar .menu.scrollable');
 	var verMenu			= jQuery('.elisc_tm_sidebar .menu');
 	var copyright		= jQuery('.elisc_tm_sidebar .copyright').outerHeight()+spacing;
-	
+
 	verMenu.css({height:H-avatarHeight-copyright});
-	
+
 	scrollable.each(function(){
 		var element		= jQuery(this);
-		
+
 		element.css({height: H-avatarHeight-copyright}).niceScroll({
 			touchbehavior:false,
 			cursorwidth:0,
@@ -627,7 +627,7 @@ function elisc_tm_scrollable(){
 // -----------------------------------------------------
 
 function elisc_tm_stickyy(){
-	 
+
 	"use strict";
 
 	var el 		= jQuery('.fn_w_sminiboxes');
@@ -640,9 +640,9 @@ function elisc_tm_stickyy(){
 			if(W > 1200){
 				var elementHeights = child.map(function() {return jQuery(this).outerHeight();}).get();
 				var maxHeight 		= Math.max.apply(null, elementHeights);
-				child.css({height:maxHeight+'px'}); 
+				child.css({height:maxHeight+'px'});
 			}
-		}); 
+		});
 	}
 
 }
@@ -658,17 +658,17 @@ jQuery('.anchor_nav').onePageNav();
 // -----------------------------------------------------
 
 function elisc_tm_down(){
-	
+
 	"use strict";
-		
+
 	jQuery('.anchor').on('click',function(){
-		
+
 		if($.attr(this, 'href') !== '#'){
 			$('html, body').animate({
 				scrollTop: $($.attr(this, 'href')).offset().top
 			}, 800);
 		}
-		
+
 		return false;
 	});
 }
