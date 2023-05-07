@@ -177,6 +177,14 @@ input[type="button"]{
 	        transition: all .3s ease;
 }
 
+.blueColor{
+	color: var(--coral-color);
+}
+
+.yellowColor{
+	color: var(--yellow-color);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -193,6 +201,28 @@ input[type="button"]{
   margin-top: 12px;
   margin-bottom: 20px;
   padding-left: 20px;
+}
+
+.text p {
+  margin-bottom: 1em;
+}
+
+.text h2,
+.text h3,
+.text h4,
+.text h5 {
+  margin-top: 1.25em;
+  margin-bottom: 0.25em;
+}
+
+.text a {
+  color: var(--coral-color);
+  text-decoration: underline;
+}
+
+.text a:hover,
+.text a:focus {
+  color: var(--coral-active-color);
 }
 
 /*------------------------------------------------------------------*/

@@ -27,11 +27,7 @@ jQuery(document).ready(function(){
 	elisc_tm_scrollable();
 	elisc_tm_stickyy();
 	elisc_tm_down();
-	elisc_tm_location();
 
-	jQuery(window).load('body', function(){
-		elisc_tm_my_load();
-	});
 	jQuery(window).on('resize', function(){
 		elisc_tm_menu_closer();
 	});
@@ -292,42 +288,6 @@ function elisc_tm_modalbox_portfolio(){
 		elisc_tm_data_images();
 		return false;
 	});
-}
-
-// -----------------------------------------------------
-// ---------------   PRELOADER   -----------------------
-// -----------------------------------------------------
-
-function elisc_tm_preloader(){
-
-	"use strict";
-
-	var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
-	var preloader = $('#preloader');
-
-	if (!isMobile) {
-		setTimeout(function() {
-			preloader.addClass('preloaded');
-		}, 800);
-		setTimeout(function() {
-			preloader.remove();
-		}, 2000);
-
-	} else {
-		preloader.remove();
-	}
-}
-
-// -----------------------------------------------------
-// -----------------   MY LOAD    ----------------------
-// -----------------------------------------------------
-
-function elisc_tm_my_load(){
-
-	"use strict";
-
-	var speed	= 500;
-	setTimeout(function(){elisc_tm_preloader();},speed);
 }
 
 // -----------------------------------------------------
@@ -669,23 +629,6 @@ function elisc_tm_down(){
 			}, 800);
 		}
 
-		return false;
-	});
-}
-
-// -----------------------------------------------------
-// ----------------    PLACEHOLDER    ------------------
-// -----------------------------------------------------
-
-function elisc_tm_location(){
-	"use strict";
-	var button		= jQuery('.href_location');
-	button.on('click',function(){
-		var element		= jQuery(this);
-		var address		= element.text();
-		address			= address.replace(/\ /g,'+');
-		var text		= 'https://maps.google.com?q=';
-		window.open(text+address);
 		return false;
 	});
 }
