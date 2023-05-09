@@ -11,22 +11,15 @@ jQuery(document).ready(function(){
 	// here all ready functions
 
 	elisc_tm_modalbox();
-	elisc_tm_movingbox();
 	elisc_tm_page_transition();
 	elisc_tm_trigger_menu();
-	elisc_tm_service_popup();
-	elisc_tm_experience_popup();
-	elisc_tm_modalbox_news();
 	elisc_tm_modalbox_portfolio();
 	elisc_tm_cursor();
-	elisc_tm_imgtosvg();
 	elisc_tm_popup();
 	elisc_tm_data_images();
 	elisc_tm_contact_form();
 	elisc_tm_owl_carousel();
 	elisc_tm_scrollable();
-	elisc_tm_stickyy();
-	elisc_tm_down();
 
 	jQuery(window).on('resize', function(){
 		elisc_tm_menu_closer();
@@ -45,38 +38,9 @@ jQuery(document).ready(function(){
 function elisc_tm_modalbox(){
 	"use strict";
 
-	jQuery('.elisc_tm_all_wrap').prepend('<div class="elisc_tm_modalbox"><div class="box_inner"><div class="close"><a href="#"><i class="icon-cancel"></i></a></div><div class="description_wrap"></div></div></div>');
+	jQuery('.elisc_tm_all_wrap').prepend('<div class="elisc_tm_modalbox"><div class="box_inner"><div class="close"><a href="#"><svg viewBox="0 0 512 512"  xmlns="http://www.w3.org/2000/svg"><path d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z"/></svg></a></div><div class="description_wrap"></div></div></div>');
 }
 
-// -----------------------------------------------------
-// ---------------------   MOVINGBOX    ----------------
-// -----------------------------------------------------
-
-function elisc_tm_movingbox(){
-	"use strict";
-	var news		= jQuery('.elisc_tm_news');
-	if(news.length){
-		if(!$('.movingbox').length){
-			$('body').append('<div class="movingbox"></div>');
-		}
-	}
-	var movingbox 	= jQuery('.movingbox');
-	var movingboxH 	= jQuery('.movingbox').height()/2;
-	var list	  	= jQuery('.elisc_tm_news .list ul li');
-	list.on('mouseenter',function(){
-		var element = jQuery(this);
-		var image	= element.find('.popup_image').attr('src');
-		movingbox.addClass('opened');
-		movingbox.css({backgroundImage:'url('+image+')'});
-	}).on('mouseleave',function(){
-		movingbox.removeClass('opened');
-	}).on('mousemove',function(event){
-		var ymove		= event.clientY-movingboxH;
-		var xmove		= event.clientX+20;
-		movingbox.css({top:ymove+'px',left:xmove+'px'});
-	});
-
-}
 
 // -----------------------------------------------------
 // ---------------   PAGE TRANSITION    ----------------
@@ -163,104 +127,7 @@ function elisc_tm_menu_closer(){
 	}
 }
 
-// -------------------------------------------------
-// -------------  EXPERIENCE POPUP  ----------------
-// -------------------------------------------------
 
-function elisc_tm_experience_popup(){
-
-	"use strict";
-
-	var modalBox		= jQuery('.elisc_tm_modalbox');
-	var button			= jQuery('.elisc_tm_experience .elisc_tm_full_link');
-	var closePopup		= modalBox.find('.close');
-
-	button.on('click',function(){
-		var element = jQuery(this);
-		var parent	= element.closest('.elisc_tm_experience .list ul li');
-		var elImage	= parent.find('.popup_image').attr('src');
-		var year	= parent.find('.job span').text().slice(1);
-		var job		= parent.find('.job h3').text();
-		var place 	= parent.find('.place span').text().slice(1);
-		var content = parent.find('.hidden_details').html();
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(content);
-		modalBox.find('.descriptions').prepend('<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+elImage+'"></div></div>');
-		elisc_tm_data_images();
-		modalBox.find('.descriptions .top_image').after('<div class="infos"><div class="year"><span>'+year+'</span></div><div class="job"><span>'+place+'</span><h3>'+job+'</h3></div></div>');
-		return false;
-	});
-	closePopup.on('click',function(){
-		modalBox.removeClass('opened');
-		modalBox.find('.description_wrap').html('');
-		return false;
-	});
-}
-
-// -------------------------------------------------
-// -------------  SERVICE POPUP  -------------------
-// -------------------------------------------------
-
-function elisc_tm_service_popup(){
-
-	"use strict";
-
-	var modalBox		= jQuery('.elisc_tm_modalbox');
-	var button			= jQuery('.elisc_tm_services .service_list .elisc_tm_full_link');
-	var closePopup		= modalBox.find('.close');
-
-	button.on('click',function(){
-		var element = jQuery(this);
-		var parent	= element.closest('.elisc_tm_services .service_list ul li');
-		var elImage	= parent.find('.popup_image').attr('src');
-		var title	= parent.find('.title h3').text();
-		var content = parent.find('.hidden_details').html();
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(content);
-		modalBox.find('.descriptions').prepend('<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+elImage+'"></div></div>');
-		elisc_tm_data_images();
-		modalBox.find('.descriptions .top_image').after('<div class="main_title"><h3>'+title+'</h3></div>');
-		return false;
-	});
-	closePopup.on('click',function(){
-		modalBox.removeClass('opened');
-		modalBox.find('.description_wrap').html('');
-		return false;
-	});
-}
-
-// -------------------------------------------------
-// -------------  MODALBOX NEWS  -------------------
-// -------------------------------------------------
-
-function elisc_tm_modalbox_news(){
-
-	"use strict";
-
-	var modalBox		= jQuery('.elisc_tm_modalbox');
-	var button			= jQuery('.elisc_tm_news .list .title a,.elisc_tm_news .elisc_tm_read_more a');
-	var closePopup		= modalBox.find('.close');
-
-	button.on('click',function(){
-		var element 	= jQuery(this);
-		var parent 		= element.closest('li');
-		var content 	= parent.find('.news_hidden_details').html();
-		var image		= parent.find('.popup_image').attr('src');
-		var meta		= parent.find('.meta').html();
-		var title		= parent.find('.title h3 a').text();
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(content);
-		modalBox.find('.news_popup_informations').prepend('<div class="image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
-		modalBox.find('.news_popup_informations .image').after('<div class="details"><div class="meta">'+meta+'</div><div class="title"><h3>'+title+'</h3></div></div>');
-		elisc_tm_data_images();
-		return false;
-	});
-	closePopup.on('click',function(){
-		modalBox.removeClass('opened');
-		modalBox.find('.description_wrap').html('');
-		return false;
-	});
-}
 
 // -------------------------------------------------
 // -------------  MODALBOX PORTFOLIO  --------------
@@ -272,6 +139,7 @@ function elisc_tm_modalbox_portfolio(){
 
 	var modalBox	= jQuery('.elisc_tm_modalbox');
 	var button		= jQuery('.elisc_tm_portfolio .portfolio_popup');
+	var closePopup	= modalBox.find('.close');
 
 	button.on('click',function(){
 		var element 	= jQuery(this);
@@ -284,8 +152,13 @@ function elisc_tm_modalbox_portfolio(){
 		modalBox.addClass('opened');
 		modalBox.find('.description_wrap').html(details);
 		modalBox.find('.popup_details').prepend('<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
-		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><span class="category">'+category+'</span><h3 class="title">'+title+'</h3></div>');
+		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><h3 class="title">'+title+'</h3></div>');
 		elisc_tm_data_images();
+		return false;
+	});
+	closePopup.on('click',function(){
+		modalBox.removeClass('opened');
+		modalBox.find('.description_wrap').html('');
 		return false;
 	});
 }
@@ -316,39 +189,6 @@ function elisc_tm_cursor(){
 	}
 };
 
-// -----------------------------------------------------
-// ---------------    IMAGE TO SVG    ------------------
-// -----------------------------------------------------
-
-function elisc_tm_imgtosvg(){
-
-	"use strict";
-
-	jQuery('img.svg').each(function(){
-
-		var jQueryimg 		= jQuery(this);
-		var imgClass		= jQueryimg.attr('class');
-		var imgURL			= jQueryimg.attr('src');
-
-		jQuery.get(imgURL, function(data) {
-			// Get the SVG tag, ignore the rest
-			var jQuerysvg = jQuery(data).find('svg');
-
-			// Add replaced image's classes to the new SVG
-			if(typeof imgClass !== 'undefined') {
-				jQuerysvg = jQuerysvg.attr('class', imgClass+' replaced-svg');
-			}
-
-			// Remove any invalid XML tags as per http://validator.w3.org
-			jQuerysvg = jQuerysvg.removeAttr('xmlns:a');
-
-			// Replace image with new SVG
-			jQueryimg.replaceWith(jQuerysvg);
-
-		}, 'xml');
-
-	});
-}
 
 // -----------------------------------------------------
 // --------------------   POPUP    ---------------------
@@ -370,22 +210,15 @@ function elisc_tm_popup(){
 		});
 
 	});
-	jQuery('.popup-youtube, .popup-vimeo').each(function() { // the containers for all your galleries
-		jQuery(this).magnificPopup({
-			disableOn: 700,
-			type: 'iframe',
-			mainClass: 'mfp-fade',
-			removalDelay: 160,
-			preloader: false,
-			fixedContentPos: true
-		});
-	});
 
-	jQuery('.soundcloude_link').magnificPopup({
-	  type : 'image',
-	   gallery: {
-		   enabled: true,
-	   },
+	jQuery('.image-popup').magnificPopup({
+		type: 'image',
+		closeOnContentClick: true,
+		image: {
+			verticalFit: false
+		},
+		removalDelay: 300,
+		mainClass: 'mfp-fade'
 	});
 }
 
@@ -410,6 +243,15 @@ function elisc_tm_data_images(){
 // ----------------    CONTACT FORM    -----------------
 // -----------------------------------------------------
 
+function IsEmail(email) {
+	var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if(!regex.test(email)) {
+	  return false;
+	}else{
+	  return true;
+	}
+}
+
 function elisc_tm_contact_form(){
 
 	"use strict";
@@ -424,15 +266,16 @@ function elisc_tm_contact_form(){
 
 		jQuery(".contact_form .returnmessage").empty(); //To empty previous error/success message.
 		//checking for blank fields
-		if(name===''||email===''||message===''){
+		if( name==='' || email ==='' || message === '' ){
+			jQuery('.empty_notice').slideDown(500).delay(2000).slideUp(500);
 
-			jQuery('div.empty_notice').slideDown(500).delay(2000).slideUp(500);
-		}
-		else{
+		} else if(IsEmail(email)==false){
+			jQuery('.invalid_email_notice').slideDown(500).delay(2000).slideUp(500);
+		} else {
 			// Returns successful data submission message when the entered information is stored in database.
-			jQuery.post("modal/contact.php",{ ajax_name: name, ajax_email: email, ajax_message:message, ajax_subject: subject}, function(data) {
+			jQuery.post("https://fabform.io/f/OPh6-Jl",{ name: name, email: email, message: message, subject: subject}, function(data) {
 
-				jQuery(".contact_form .returnmessage").append(data);//Append returned message to message paragraph
+				//jQuery(".contact_form .returnmessage").append(data);//Append returned message to message paragraph
 
 
 				if(jQuery(".contact_form .returnmessage span.contact_error").length){
@@ -497,7 +340,6 @@ function elisc_tm_owl_carousel(){
 			1920:{items:4}
 		}
 	});
-	elisc_tm_imgtosvg();
 
 	var carousel3			= jQuery('.elisc_tm_portfolio .owl-carousel');
 
@@ -579,56 +421,5 @@ function elisc_tm_scrollable(){
 			autohidemode:true,
 			cursorborder:"0px solid #eee"
 		});
-	});
-}
-
-// -----------------------------------------------------
-// --------------------- STICKY   ----------------------
-// -----------------------------------------------------
-
-function elisc_tm_stickyy(){
-
-	"use strict";
-
-	var el 		= jQuery('.fn_w_sminiboxes');
-
-	if(el.length){
-		el.each(function(index, element) {
-			var child	= jQuery(element).find('.fn_w_sminibox');
-			child.css({height:'auto'});
-			var W 		= jQuery(window).width();
-			if(W > 1200){
-				var elementHeights = child.map(function() {return jQuery(this).outerHeight();}).get();
-				var maxHeight 		= Math.max.apply(null, elementHeights);
-				child.css({height:maxHeight+'px'});
-			}
-		});
-	}
-
-}
-
-// ------------------------------------------------
-// -------------------  ANCHOR --------------------
-// ------------------------------------------------
-
-jQuery('.anchor_nav').onePageNav();
-
-// -----------------------------------------------------
-// -----------------    DOWN    ------------------------
-// -----------------------------------------------------
-
-function elisc_tm_down(){
-
-	"use strict";
-
-	jQuery('.anchor').on('click',function(){
-
-		if($.attr(this, 'href') !== '#'){
-			$('html, body').animate({
-				scrollTop: $($.attr(this, 'href')).offset().top
-			}, 800);
-		}
-
-		return false;
 	});
 }
